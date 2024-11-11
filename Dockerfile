@@ -9,7 +9,7 @@ RUN yum install -y httpd
 RUN yum install -y zip
 RUN yum install -y unzip
 
-COPY https://raw.githubusercontent.com/rangarohitnallamolu/portfolio.git/main/your/portfolio/folder /var/www/html/
+COPY https://raw.githubusercontent.com/rangarohitnallamolu/portfolio.git /var/www/html/
 WORKDIR /var/www/html/
 
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
