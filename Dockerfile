@@ -13,7 +13,7 @@ WORKDIR /var/www/html/
 RUN ls -l /var/www/html/
 RUN sh -c 'unzip -q "*.zip"'
 
-# RUN cp -rvf photogenic/* .
-# RUN rm -rf photogenic photogenic.zip
+RUN cp -rvf master/* .
+RUN rm -rf master master.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80 
