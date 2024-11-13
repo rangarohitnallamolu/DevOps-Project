@@ -1,12 +1,20 @@
 - hosts: all
   become: false
   tasks: 
+       name: Check if deployment exists
+       shell: kubectl get deployments mrdevops
+       register: deployment_exists_result
+       ignore_errors: true
+       name: Check if service exists
+       shell: kubectl get service mrdevops
+       register: service_exists_result
+       ignore_errors: true
      - name: delete old deployment
        command: kubectl delete -f /home/ubuntu/Deployment.yml
        when: deployment_exists_result.rc == 0
      - name: delete old service
        command: kubectl delete -f /home/ubuntu/Service.yml
-       when: deployment_exists_result.rc == 0
+       when: service_exists_result.rc == 0
      - name: create new deployment
        command: kubectl apply -f /home/ubuntu/Deployment.yml
      - name: create new service
