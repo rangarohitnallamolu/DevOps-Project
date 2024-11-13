@@ -16,4 +16,4 @@ RUN sh -c 'unzip -q "*.zip"'
 RUN cp -rvf DevOps-Project-master/* .
 RUN rm -rf DevOps-Project-master master.zip
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
-EXPOSE 80 
+EXPOSE 80 22
