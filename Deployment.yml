@@ -1,19 +1,19 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-   name: mrdevops
+   name: portfolio
 spec:
    replicas: 2
    selector:      # tells the controller which pods to watch/belong to
     matchLabels:
-     app: mrdevops
+     app: portfolio
    template:
       metadata:
         labels:
-          app: mrdevops
+          app: portfolio
       spec:
        containers:
-        - name: mrdevops
+        - name: portfolio
           image: rangarohit/pip
           imagePullPolicy: Always
           ports:
