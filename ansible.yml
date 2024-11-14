@@ -2,11 +2,11 @@
   become: false
   tasks: 
      - name: Check if deployment exists
-       shell: kubectl get deployments portfolio
+       shell: kubectl get deployments mrdevops
        register: deployment_exists_result
        ignore_errors: true
      - name: Check if service exists
-       shell: kubectl get service portfolio_service
+       shell: kubectl get service mrdevops
        register: service_exists_result
        ignore_errors: true
      - name: delete old deployment

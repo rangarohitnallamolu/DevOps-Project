@@ -1,15 +1,15 @@
 kind: Service                             
 apiVersion: v1
 metadata:
-  name: portfolio_service
+  name: mrdevops
   labels:
-    app: portfolio_service
+    app: mrdevops
 spec:
   ports:
     - protocol: TCP
       port: 8080                               
       targetPort: 80                    
-      nodePort: 31000
+      nodePort: 31200
   selector:
-    app: portfolio_service                  
+    app: mrdevops                    
   type: LoadBalancer     
