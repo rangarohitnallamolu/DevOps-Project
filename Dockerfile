@@ -1,20 +1,20 @@
 FROM centos
-MAINTAINER rangarohit.nallamolu@gmail.com
-RUN cd /etc/yum.repos.d/
-RUN sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-RUN yum -y install java
-CMD /bin/bash
-RUN yum install -y httpd
-RUN yum install -y zip
-RUN yum install -y unzip
-RUN curl -L https://github.com/rangarohitnallamolu/portfolio/archive/refs/heads/master.zip -o /tmp/portfolio.zip
-COPY /tmp/portfolio.zip /var/www/html/
-WORKDIR /var/www/html/
-RUN ls -l /var/www/html/
-RUN sh -c 'unzip -q "*.zip"'
 
-RUN cp -rvf portfolio-master/* .
-RUN rm -rf portfolio-master portfolio-master.zip
-CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
+# Update package lists and install required packages
+RUN yum update -y && \
+    yum install -y java unzip httpd
+
+# Download the portfolio archive
+RUN curl -L https://github.com/rangarohitnallamolu/portfolio/archive/refs/heads/master.zip -o /tmp/portfolio.zip
+
+# Extract the portfolio files
+WORKDIR /var/www/html
+COPY /tmp/portfolio.zip .
+RUN unzip -q "*.zip" && rm -rf portfolio-master.zip
+
+# Set the default document root
+RUN ln -s portfolio-master/public /var/www/html/index.html
+
+# Expose port 80 and start the web server
 EXPOSE 80
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
