@@ -1,4 +1,5 @@
 DevOps Project - README
+
 This project contains the scripts and configurations for building and deploying a Dockerized application to a Kubernetes cluster.
 
 Technologies Used
