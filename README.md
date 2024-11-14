@@ -1,29 +1,37 @@
-DevOps Project - README
+README
+
 This project outlines the steps and configurations needed to set up a CI/CD pipeline using Jenkins, Ansible, and Kubernetes. The pipeline automates the deployment of a Dockerized portfolio application hosted on GitHub, triggered by a webhook for continuous integration (CI) and continuous deployment (CD).
 
 Technologies Used
+
 Jenkins: For continuous integration and automation
 Ansible: For configuration management and orchestration of deployments
 Docker: For containerizing the application
 Kubernetes: For container orchestration, managing container deployment, scaling, and load balancing
+
+
 Project Structure
+
 Deployment.yml: Defines the Kubernetes deployment configuration
 Service.yml: Specifies the Kubernetes service for exposing the application
 Dockerfile: Contains instructions for building the Docker image of the application
 ansible.yml: Ansible playbook to deploy the application on the Kubernetes cluster
 Prerequisites
+
 Infrastructure Setup:
 
 Three EC2 instances:
 Jenkins: t2.micro
 Ansible: t2.micro
 Kubernetes (Master Node): t2.medium
+
 Software Requirements:
 
 Jenkins installed on the Jenkins server with plugins for Docker and SSH.
 Docker installed on Jenkins, Ansible, and Kubernetes instances.
 Ansible installed on the Jenkins instance, configured to connect to the Kubernetes instance.
 Webhook configured on the GitHub repository to trigger Jenkins builds on code changes.
+
 Credentials:
 
 Docker Hub credentials in Jenkins for pushing the Docker image.
@@ -49,15 +57,19 @@ Create a Jenkins Pipeline with the following stages:
 Stage 1: Git Checkout
 
 Jenkins clones the repository from GitHub on each triggered build.
+
 Stage 2: Transfer Docker File to Ansible Server
 
 Use SSH to copy necessary files (e.g., Dockerfile) to the Ansible server.
+
 Stage 3: Build Docker Image
 
 Build the Docker image on the Ansible server using Docker.
+
 Stage 4: Docker Image Tagging and Push
 
 Tag the Docker image and push it to Docker Hub.
+
 Stage 5: Deploy Using Ansible to Kubernetes
 
 Ansible executes the deployment on the Kubernetes cluster.
