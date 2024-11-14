@@ -1,8 +1,8 @@
-<h3>README</h3>h3>
+<h2>README</h2>
 
 This project outlines the steps and configurations needed to set up a CI/CD pipeline using Jenkins, Ansible, and Kubernetes. The pipeline automates the deployment of a Dockerized portfolio application hosted on GitHub, triggered by a webhook for continuous integration (CI) and continuous deployment (CD).
 
-Technologies Used
+<h3>Technologies Used</h3>
 
 Jenkins: For continuous integration and automation
 Ansible: For configuration management and orchestration of deployments
@@ -10,7 +10,7 @@ Docker: For containerizing the application
 Kubernetes: For container orchestration, managing container deployment, scaling, and load balancing
 
 
-Project Structure
+<h3>Project Structure</h3>
 
 Deployment.yml: Defines the Kubernetes deployment configuration
 Service.yml: Specifies the Kubernetes service for exposing the application
@@ -18,40 +18,58 @@ Dockerfile: Contains instructions for building the Docker image of the applicati
 ansible.yml: Ansible playbook to deploy the application on the Kubernetes cluster
 Prerequisites
 
-Infrastructure Setup:
+<h3>Infrastructure Setup:</h3>
 
 Three EC2 instances:
 Jenkins: t2.micro
 Ansible: t2.micro
 Kubernetes (Master Node): t2.medium
 
-Software Requirements:
+<h3>Software Requirements:</h3>
 
 Jenkins installed on the Jenkins server with plugins for Docker and SSH.
 Docker installed on Jenkins, Ansible, and Kubernetes instances.
 Ansible installed on the Jenkins instance, configured to connect to the Kubernetes instance.
 Webhook configured on the GitHub repository to trigger Jenkins builds on code changes.
 
-Credentials:
+<h3>Credentials:</h3>
 
 Docker Hub credentials in Jenkins for pushing the Docker image.
+
 SSH keys for secure access between Jenkins, Ansible, and Kubernetes instances.
+
 Setup Process
+
 Step 1: Deploy Jenkins and Configure Webhook
+
 Launch EC2 for Jenkins:
+
 Set up a t2.micro instance, install Jenkins, and configure necessary plugins (Docker, SSH).
+
 GitHub Webhook:
+
 Set up a webhook in your GitHub repository to notify Jenkins on code changes, triggering the CI/CD pipeline.
+
 Step 2: Configure Ansible for Deployment
+
 Launch EC2 for Ansible:
+
 Set up a t2.micro instance, install Ansible, and configure it to connect to the Kubernetes instance.
+
 Set Up Playbook (ansible.yml):
+
 Create and configure the Ansible playbook (ansible.yml) to automate the deployment on Kubernetes.
+
 Step 3: Set Up Kubernetes Cluster
+
 Launch EC2 for Kubernetes (Master Node):
+
 Use a t2.medium instance to set up Kubernetes.
+
 Deploy the Deployment.yml and Service.yml files to manage the application.
+
 Step 4: CI/CD Pipeline in Jenkins
+
 Create a Jenkins Pipeline with the following stages:
 
 Stage 1: Git Checkout
@@ -74,7 +92,7 @@ Stage 5: Deploy Using Ansible to Kubernetes
 
 Ansible executes the deployment on the Kubernetes cluster.
 
-Pipeline Script for Jenkins:
+<h3>Pipeline Script for Jenkins:</h3>
 
 node {
     stage('Git Checkout') {
