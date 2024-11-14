@@ -8,7 +8,8 @@ CMD /bin/bash
 RUN yum install -y httpd
 RUN yum install -y zip
 RUN yum install -y unzip
-COPY https://github.com/rangarohitnallamolu/portfolio/archive/refs/heads/master.zip /var/www/html/
+RUN curl -L https://github.com/rangarohitnallamolu/portfolio/archive/refs/heads/master.zip -o /tmp/portfolio.zip
+COPY /tmp/portfolio.zip /var/www/html/
 WORKDIR /var/www/html/
 RUN ls -l /var/www/html/
 RUN sh -c 'unzip -q "*.zip"'
